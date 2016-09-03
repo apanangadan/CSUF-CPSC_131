@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename E> class SLinkedList;
+template <typename E> class SLinkedList;	// forward declaration to be used when declaring SNode
 
 template <typename E>
 class SNode {					// singly linked list node
