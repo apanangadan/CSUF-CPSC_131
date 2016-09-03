@@ -1,3 +1,7 @@
+// Code from:
+// Data Structures and Algorithms in C++, Goodrich, Tamassia, and Mount, 2nd Ed., 2011.
+//
+
 #pragma once
 
 template <typename E> class SLinkedList;	// forward declaration to be used when declaring SNode
