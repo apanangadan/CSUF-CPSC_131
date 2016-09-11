@@ -1,45 +1,57 @@
-
 #pragma once
 
 #include <stdexcept>
 
-template <typename E>
+using namespace std;
+
+template <typename ELT>
 class FixedVector {
 private:
-  int length;
-  E* elements;
+	int _length;
+	ELT *_array;
 
 public:
-  FixedVector(int length, E initial_value)
-    throw(invalid_argument)
-    : length(length) {
-    if (length < 0) {
-      throw invalid_argument("FixedVector length must be non-negative");
-    } else {
-      elements = new E[length];
-      for (int i = 0; i < length; i++) {
-        elements[i] = initial_value;
-      }
-    }    
-  }
+	// length copies of default_value
+	FixedVector(int length) {
+		if (length < 0) throw invalid_argument("length < 0");
+		_length = length;
+		_array = new ELT[length];
+	}
 
-  ~FixedVector() { delete [] elements; }
+	// default constructor: empty vector
+	FixedVector() {
+		_length = 0;
+		_array = new ELT[0];
+	}
 
-  int getLength() const { return length; }
+	// copy constructor
+	FixedVector(const FixedVector& a) {
+		_length = a._length;
+		_array = new ELT[length];
+		for (int i = 0; i < length; i++)
+			_array[i] = a._array[i];
+	}
 
-  E getIndex(int i) const throw(range_error) {
-    if ((i < 0) || (i >= length)) {
-      throw range_error("FixedVector::getIndex index out of range");
-    } else {
-      return elements[i];
-    }
-  }
+	~FixedVector() { delete[] _array; }
 
-  void setIndex(int i, E value) throw(range_error) {
-    if ((i < 0) || (i >= length)) {
-      throw range_error("FixedVector::getIndex index out of range");
-    } else {
-      elements[i] = value;
-    }
-  }
+	int length() { return _length; }
+
+	bool is_empty() { return (_length == 0); }
+
+	ELT& get(int index) {
+		if ((index < 0) || (index >= _length)) throw range_error("index out of bounds");
+		return _array[index];
+	}
+
+	void set(int index, ELT value) {
+		if (is_empty()) throw invalid_argument("array is empty");
+		if ((index < 0) || (index >= _length)) throw range_error("index out of bounds");
+		_array[index] = value;
+	}
+
+	ELT& operator[](int index) {
+		if ((index < 0) || (index >= _length)) throw range_error("index out of bounds");
+		return get(index);
+	}
 };
+
