@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include <stdexcept>
+
+using namespace std;
+
 template <typename E> class SLinkedList;	// forward declaration to be used when declaring SNode
 
 template <typename E>
@@ -20,26 +24,29 @@ public:
 	SLinkedList();				// empty list constructor
 	~SLinkedList();				// destructor
 	bool empty() const;			// is list empty?
-	const E& front() const;			// return front element
+	E& front();					// return front element
 	void addFront(const E& e);		// add to front of list
 	void removeFront();			// remove front item list
+	int size() const;					// list size
 private:
 	SNode<E>* head;				// head of the list
+	int     n;							// number of items
 };
 
 template <typename E>
 SLinkedList<E>::SLinkedList()			// constructor
-	: head(NULL) { }
+	: head(NULL), n(0) { }
 
 template <typename E>
 bool SLinkedList<E>::empty() const		// is list empty?
 {
-	return head == NULL;
+	return head == NULL; // can also use return (n == 0);
 }
 
 template <typename E>
-const E& SLinkedList<E>::front() const		// return front element
+E& SLinkedList<E>::front() 		// return front element
 {
+	if (empty()) throw length_error("empty list");
 	return head->elem;
 }
 
@@ -55,11 +62,19 @@ void SLinkedList<E>::addFront(const E& e) {	// add to front of list
 	v->elem = e;				// store data
 	v->next = head;				// head now follows v
 	head = v;				// v is now the head
+	n++;
 }
 
 template <typename E>
 void SLinkedList<E>::removeFront() {		// remove front item
+	if (empty()) throw length_error("empty list");
 	SNode<E>* old = head;			// save current head
 	head = old->next;			// skip over old head
 	delete old;				// delete the old head
+	n--;
+}
+
+template <typename E>
+int SLinkedList<E>::size() const {				// list size
+	return n;
 }
