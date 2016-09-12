@@ -15,7 +15,7 @@ public:
 	FixedVector(int length) {
 		if (length < 0) throw invalid_argument("length < 0");
 		_length = length;
-		_array = new ELT[length];
+		_array = new ELT[_length];
 	}
 
 	// default constructor: empty vector
@@ -27,8 +27,8 @@ public:
 	// copy constructor
 	FixedVector(const FixedVector& a) {
 		_length = a._length;
-		_array = new ELT[length];
-		for (int i = 0; i < length; i++)
+		_array = new ELT[_length];
+		for (int i = 0; i < _length; i++)
 			_array[i] = a._array[i];
 	}
 
