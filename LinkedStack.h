@@ -16,10 +16,10 @@ public:
    int size() const {return numberOfElements;}  // number of items in stack
    bool empty() const
       { return numberOfElements == 0; }         // is the stack empty?
-   E& top() throw(length_error);          // the top element
+   E& top();									// the top element
    void push(const E& e);                       // push element onto stack
-   void pop() throw(length_error);              // pop the stack
-   void printAll() throw(length_error);         // print all
+   void pop();									// pop the stack
+   void printAll();								// print top element
 private:                                        // member data
    SLinkedList<E> stack;                        // stack of elements
    int numberOfElements;                        // number of elements
@@ -28,7 +28,7 @@ private:                                        // member data
 
 // get the top element
 template <typename E>
-E& LinkedStack<E>::top() throw(length_error) {
+E& LinkedStack<E>::top() {
    if (empty()) throw length_error("Top of empty stack");
    return stack.front();
 }
@@ -42,15 +42,15 @@ void LinkedStack<E>::push(const E& e) {
 
 // pop the stack
 template <typename E>
-void LinkedStack<E>::pop() throw(length_error) {
+void LinkedStack<E>::pop() {
    if (empty()) throw length_error("Pop from empty stack");
    --numberOfElements;
    stack.removeFront();
 }
 
-// print all elements on stack
+// print top element on stack
 template <typename E>
-void LinkedStack<E>::printAll() throw(length_error) {
+void LinkedStack<E>::printAll() {
    if (empty()) throw length_error("Empty stack");
    cout<< "Top of current stack: {" << stack.front() << "}" << endl;
 }
