@@ -19,7 +19,7 @@ public:
    E& top();									// the top element
    void push(const E& e);                       // push element onto stack
    void pop();									// pop the stack
-   void printAll();								// print top element
+   void printTop();								// print top element
 private:                                        // member data
    SLinkedList<E> stack;                        // stack of elements
    int numberOfElements;                        // number of elements
@@ -50,7 +50,7 @@ void LinkedStack<E>::pop() {
 
 // print top element on stack
 template <typename E>
-void LinkedStack<E>::printAll() {
+void LinkedStack<E>::printTop() {
    if (empty()) throw length_error("Empty stack");
    cout<< "Top of current stack: {" << stack.front() << "}" << endl;
 }
