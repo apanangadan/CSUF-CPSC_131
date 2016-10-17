@@ -27,6 +27,7 @@ public:
    
    // copy constructor
    ExtendableVector(const ExtendableVector& a) {
+      capacity = a.capacity;
       numberOfElements = a.numberOfElements;
       elements = new ELT[numberOfElements];
       for (int i = 0; i < numberOfElements; i++) {
