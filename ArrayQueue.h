@@ -15,8 +15,8 @@ public:
 	int size() const;				// number of items in the stack
 	bool empty() const;				// is the stack empty?
 	const E& front() const;	// get the top element
-	void enqueue(const E& e);	// push element onto stack
-	void dequeue();				// pop the stack
+	void enqueue(const E& e);	// add to back of queue
+	void dequeue();				// remove from front of queue
 	void printAll();					// print all elements on stack to cout
 private:                                	// member data
 	E* Q;					// array of queue elements
@@ -53,7 +53,7 @@ void ArrayQueue<E>::enqueue(const E& e) {
 	n++;
 }
 
-template <typename E>				// remove element at back of queue
+template <typename E>				// remove element at front of queue
 void ArrayQueue<E>::dequeue() {
 	if (empty()) throw length_error("enqueue from empty queue");
 	f = (f + 1) % capacity;
