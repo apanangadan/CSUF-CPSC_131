@@ -44,7 +44,7 @@ protected:						// local utilities
 	Position<E> root() const;					// get virtual root
 	Position<E> finder(const K& k, const Position<E>& v);		// find utility
 	Position<E> inserter(const K& k, const V& x);		// insert utility
-	void inorder(Position<E>& v) const; // inorder print utility
+	void inorder(const Position<E>& v) const; // inorder print utility
 	Position<E> eraser(Position<E>& v);				// erase utility
 	// Position restructure(const TPos& v);	// restructure
 private: 						// member data
@@ -88,7 +88,7 @@ void SearchTree<E>::printInorder() const			// is tree empty?
 }
 
 template <typename E>
-void SearchTree<E>::inorder(Position<E>& v) const			// is tree empty?
+void SearchTree<E>::inorder(const Position<E>& v) const			// is tree empty?
 {
 	if (v.isExternal()) return;
 	inorder(v.left());
