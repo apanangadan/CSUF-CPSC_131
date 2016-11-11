@@ -86,9 +86,9 @@ public:
 							
 	// housekeeping functions such as copy constructor omitted...
 private:
-	void preorder(TNode<E>* v) const;	// preorder utility
-	void inorder(TNode<E>* v) const;	// inorder utility
-	void postorder(TNode<E>* v) const;	// postorder utility
+	void preorder(const TNode<E>* v) const;	// preorder utility
+	void inorder(const TNode<E>* v) const;	// inorder utility
+	void postorder(const TNode<E>* v) const;	// postorder utility
 	TNode<E>* _root;					// pointer to the root
 	int n;						// number of nodes
 };
@@ -149,7 +149,7 @@ void LinkedBinaryTree<E>::preorderPrint() const {
 }
 
 template <typename E>
-void LinkedBinaryTree<E>::preorder(TNode<E> *v) const {
+void LinkedBinaryTree<E>::preorder(const TNode<E> *v) const {
 	if (v == NULL) return;
 	cout << v->elem << endl;
 	preorder(v->left);
@@ -162,7 +162,7 @@ void LinkedBinaryTree<E>::inorderPrint() const {
 }
 
 template <typename E>
-void LinkedBinaryTree<E>::inorder(TNode<E> *v) const {
+void LinkedBinaryTree<E>::inorder(const TNode<E> *v) const {
 	if (v == NULL) return;
 	inorder(v->left);
 	cout << v->elem << endl;
@@ -175,7 +175,7 @@ void LinkedBinaryTree<E>::postorderPrint() const {
 }
 
 template <typename E>
-void LinkedBinaryTree<E>::postorder(TNode<E> *v) const {
+void LinkedBinaryTree<E>::postorder(const TNode<E> *v) const {
 	if (v == NULL) return;
 	postorder(v->left);
 	postorder(v->right);
