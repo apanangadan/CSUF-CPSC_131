@@ -42,7 +42,7 @@ protected:						// local utilities
 	// BinaryTree<E> BinaryTree;			// linked binary tree
 	//typedef typename BinaryTree::Position TPos;		// position in the tree
 	Position<E> root() const;					// get virtual root
-	Position<E> finder(const K& k, Position<E>& v);		// find utility
+	Position<E> finder(const K& k, const Position<E>& v);		// find utility
 	Position<E> inserter(const K& k, const V& x);		// insert utility
 	void inorder(Position<E>& v) const; // inorder print utility
 	Position<E> eraser(Position<E>& v);				// erase utility
@@ -97,7 +97,7 @@ void SearchTree<E>::inorder(Position<E>& v) const			// is tree empty?
 }
 
 template <typename E>					// find utility
-Position<E> SearchTree<E>::finder(const K& k, Position<E>& v) {
+Position<E> SearchTree<E>::finder(const K& k, const Position<E>& v) {
 	if (v.isExternal()) return v;			// key not found
 	if (k < (*v).key()) return finder(k, v.left());	// search left subtree
 	else if ((*v).key() < k) return finder(k, v.right());	// search right subtree
@@ -152,6 +152,6 @@ template <typename E>					// remove key k entry
 void SearchTree<E>::erase(const K& k) {
 	Position<E> v = finder(k, root());	// search from virtual root
 	if (v.isExternal())					// not found?
-		throw out_of_range("Erase of nonexistent");
+		throw out_of_range("Erase of nonexistent key");
 	eraser(v);						// remove it
 }
